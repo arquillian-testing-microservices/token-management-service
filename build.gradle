@@ -1,7 +1,6 @@
 plugins {
     id 'application'
     id 'com.github.johnrengelman.shadow' version '1.2.3'
-    id "io.spring.dependency-management" version "0.6.1.RELEASE"
 }
 
 repositories {
@@ -13,35 +12,18 @@ sourceCompatibility = '1.8'
 mainClassName = 'io.vertx.core.Launcher'
 
 def vertxVersion = '3.3.3'
-def mainVerticleName = 'io.vertx.starter.MainVerticle'
+def mainVerticleName = 'org.arquillian.microservices.usermanagement.boundary.UserManagementResource'
 def watchForChange = 'src/**/*'
 def doOnChange = './gradlew classes'
 
-//2.0.2 2.1.1
-dependencyManagement {
-    imports {
-        mavenBom 'org.jboss.arquillian:arquillian-bom:1.1.11.Final'
-        mavenBom 'org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-depchain:2.2.4'
-    }
-}
+
 
 dependencies {
     compile "io.vertx:vertx-core:$vertxVersion"
     compile "io.vertx:vertx-web:$vertxVersion"
-    compile "io.vertx:vertx-auth-jwt:$vertxVersion"
-    compile "io.vertx:vertx-rx-java:$vertxVersion"
     testCompile "junit:junit:4.12"
     testCompile "io.vertx:vertx-unit:$vertxVersion"
-    testCompile 'org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-api-maven'
-    testCompile 'org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-impl-maven'
-    testCompile 'org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-impl-maven-archive'
-    testCompile 'org.jboss.arquillian.junit:arquillian-junit-standalone'
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.jboss.arquillian.daemon:arquillian-daemon-main:1.0.0.Alpha2'
-    testCompile 'org.jboss.arquillian.daemon:arquillian-daemon-server:1.0.0.Alpha2'
-    testCompile 'org.jboss.arquillian.daemon:arquillian-daemon-protocol-wire:1.0.0.Alpha2'
-    testCompile 'org.jboss.arquillian.daemon:arquillian-daemon-protocol-arquillian:1.0.0.Alpha2'
-    testCompile 'org.jboss.arquillian.daemon:arquillian-daemon-container-common:1.0.0.Alpha2'
+    testCompile "io.rest-assured:rest-assured:3.0.1"
 }
 
 shadowJar {

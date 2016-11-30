@@ -17,6 +17,7 @@ bin/
 
 # Maven
 target/
+build/
 
 # TestNG
 test-output/
